@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Navbar from "../../components/Navigation/Navbar/Navbar";
-// import SideDrawer from "../components/Navigation/SideDrawer/SideDrawer";
+import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -17,6 +17,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Navbar />
+      <SideDrawer />
       <MainWrapper>{children}</MainWrapper>
     </>
   );
