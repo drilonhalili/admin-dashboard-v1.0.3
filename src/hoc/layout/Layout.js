@@ -6,11 +6,14 @@ import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
 
 const MainWrapper = styled.div`
   width: 100%;
-  min-height: calc(100vh-6rem);
+  min-height: calc(100vh - 6rem);
+  height: 100%;
   margin-top: 6rem;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border: 1px solid red;
 `;
 
 const Layout = ({ children }) => {
