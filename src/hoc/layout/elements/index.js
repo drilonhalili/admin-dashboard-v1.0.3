@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Form } from "formik";
 
 export const Container = styled.div`
   width: 100%;
@@ -19,4 +20,12 @@ export const FormWrapper = styled.div`
   align-items: center;
   background-color: var(--color-mainDark);
   box-shadow: 0rem 0.5rem 3.5rem var(--shadow);
+`;
+
+export const StyledFrom = styled(Form)`
+  display: flex;
+  position: relative;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
 `;

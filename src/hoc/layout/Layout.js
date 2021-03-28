@@ -12,8 +12,6 @@ const MainWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  border: 1px solid red;
 `;
 
 const Layout = ({ children }) => {

@@ -1,8 +1,8 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-import { FormWrapper } from "../../../hoc/layout/elements";
+import { FormWrapper, StyledFrom } from "../../../hoc/layout/elements";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -22,7 +22,8 @@ const Login = () => {
     >
       {({ isSubmitting, isValid }) => (
         <FormWrapper>
-          <Form>
+          <h1>Login here...</h1>
+          <StyledFrom>
             <Field type="email" name="email" placeholder="Your email..." />
             <ErrorMessage name="email" />
             <Field
@@ -32,7 +33,7 @@ const Login = () => {
             />
             <ErrorMessage name="password" />
             <button type="submit">Submit</button>
-          </Form>
+          </StyledFrom>
         </FormWrapper>
       )}
     </Formik>
