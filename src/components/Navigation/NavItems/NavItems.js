@@ -21,8 +21,8 @@ const NavItems = ({ mobile, clicked }) => {
         <NavItem clicked={clicked} mobile={mobile} link="/">
           Home
         </NavItem>
-        <NavItem clicked={clicked} mobile={mobile} link="/todos">
-          Todos
+        <NavItem clicked={clicked} mobile={mobile} link="/contacts">
+          Contacts
         </NavItem>
         <NavItem clicked={clicked} mobile={mobile} link="/login">
           Login

@@ -4,7 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Layout from "./hoc/layout/Layout";
 
 import Home from "./containers/Home/Home";
-import Todos from "./containers/Todos/Todos";
+import Contacts from "./containers/Contacts/Contacts";
 import Login from "./containers/Auth/Login/Login";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
     <Layout>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/todos" component={Todos} />
+        <Route exact path="/contacts" component={Contacts} />
         <Route exact path="/login" component={Login} />
         <Redirect to="/" />
       </Switch>
