@@ -7,18 +7,35 @@ import Input from "../../../components/UI/Forms/Input/Input";
 import Button from "../../../components/UI/Forms/Button/Button";
 import Heading from "../../../components/UI/Headings/Heading";
 
-const LoginSchema = Yup.object().shape({
+const SignUpSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .required("Your first name is required.")
+    .min(3, "Too short.")
+    .max(25, "Too long."),
+  lastName: Yup.string()
+    .required("Your last name is required.")
+    .min(3, "Too short.")
+    .max(25, "Too long."),
   email: Yup.string()
     .email("Invalid email.")
     .required("The email is required."),
   password: Yup.string().required("The password is required."),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], `Password doesn't match.`)
+    .required("You need to confirm your password."),
 });
 
-const Login = () => {
+const SignUp = () => {
   return (
     <Formik
-      initialValues={{ email: "", password: "" }}
-      validationSchema={LoginSchema}
+      initialValues={{
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      }}
+      validationSchema={SignUpSchema}
       onSubmit={(values, { setSubmiting }) => {
         console.log(values);
       }}
@@ -26,12 +43,24 @@ const Login = () => {
       {({ isSubmitting, isValid }) => (
         <FormWrapper>
           <Heading noMargin size="h1" color="white">
-            Login into your account
+            Sign up for an account
           </Heading>
           <Heading bold size="h4" color="white">
-            Fill in your details to login into your account
+            Fill in your details to register your new account
           </Heading>
           <StyledFrom>
+            <Field
+              type="text"
+              name="firstName"
+              placeholder="Your first name..."
+              component={Input}
+            />
+            <Field
+              type="text"
+              name="lastName"
+              placeholder="Your last name..."
+              component={Input}
+            />
             <Field
               type="email"
               name="email"
@@ -44,8 +73,14 @@ const Login = () => {
               placeholder="Your password..."
               component={Input}
             />
+            <Field
+              type="password"
+              name="confirmPassword"
+              placeholder="Re-type your password..."
+              component={Input}
+            />
             <Button disabled={!isValid} type="submit">
-              Login
+              Sign up
             </Button>
           </StyledFrom>
         </FormWrapper>
@@ -54,4 +89,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
