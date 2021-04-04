@@ -3,8 +3,8 @@ const initialState = {
   loading: false,
 };
 
-const authReducer = (state = initialState, action) => {
-  switch (action.type) {
+const authReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case "AUTH_START":
       return {
         ...state,
@@ -14,6 +14,11 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+      };
+    case "AUTH_FAIL":
+      return {
+        ...state,
+        error: payload,
       };
     default:
       return state;

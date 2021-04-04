@@ -7,6 +7,7 @@ import { FormWrapper, StyledFrom } from "../../../hoc/layout/elements";
 import Input from "../../../components/UI/Forms/Input/Input";
 import Button from "../../../components/UI/Forms/Button/Button";
 import Heading from "../../../components/UI/Headings/Heading";
+import Message from "../../../components/UI/Message/Message";
 
 import * as actions from "../../../store/actions";
 
@@ -30,7 +31,7 @@ const SignUpSchema = Yup.object().shape({
     .required("You need to confirm your password."),
 });
 
-const SignUp = ({ signUp }) => {
+const SignUp = ({ signUp, loading, error }) => {
   return (
     <Formik
       initialValues={{
@@ -41,9 +42,8 @@ const SignUp = ({ signUp }) => {
         confirmPassword: "",
       }}
       validationSchema={SignUpSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
-        signUp(values);
+      onSubmit={async (values, { setSubmitting }) => {
+        await signUp(values);
         setSubmitting(false);
       }}
     >
@@ -86,9 +86,16 @@ const SignUp = ({ signUp }) => {
               placeholder="Re-type your password..."
               component={Input}
             />
-            <Button disabled={!isValid} type="submit">
+            <Button
+              disabled={!isValid || isSubmitting}
+              loading={loading ? "Signing up..." : null}
+              type="submit"
+            >
               Sign up
             </Button>
+            <Message error show={error}>
+              {error}
+            </Message>
           </StyledFrom>
         </FormWrapper>
       )}
@@ -96,7 +103,10 @@ const SignUp = ({ signUp }) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = ({ auth }) => ({
+  loading: auth.loading,
+  error: auth.error,
+});
 
 const mapDispatchToProps = {
   signUp: actions.signUp,
