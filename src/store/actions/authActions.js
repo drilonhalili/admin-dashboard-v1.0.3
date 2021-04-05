@@ -18,6 +18,7 @@ export const signUp = (data) => async (
       firstName: data.firstName,
       lastName: data.lastName,
     });
+    dispatch({ type: "AUTH_SUCCESS", payload: err.message });
   } catch (err) {
     dispatch({ type: "AUTH_FAIL", payload: err.message });
   }
