@@ -40,7 +40,7 @@ const Menu = styled.div`
   justify-content: center;
   height: 100vh;
   background-color: var(--color-mainDark);
-  visibility: ${(props) => (props.opened ? "visibile" : "hidden")};
+  visibility: ${(props) => (props.opened ? "visible" : "hidden")};
   transform: translateY(${(props) => (props.opened ? "-0%" : "-100%")});
   transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   display: none;
@@ -50,7 +50,7 @@ const Menu = styled.div`
   }
 `;
 
-const SideDrawer = () => {
+const SideDrawer = ({ loggedIn }) => {
   const [isOpened, setIsOpened] = useState(false);
   return (
     <>
@@ -61,7 +61,11 @@ const SideDrawer = () => {
         </Wrapper>
       </FixedWrapper>
       <Menu opened={isOpened}>
-        <NavItems mobile="true" clicked={() => setIsOpened(false)} />
+        <NavItems
+          loggedIn={loggedIn}
+          mobile="true"
+          clicked={() => setIsOpened(false)}
+        />
       </Menu>
     </>
   );

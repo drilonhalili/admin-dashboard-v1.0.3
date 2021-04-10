@@ -1,3 +1,5 @@
+import * as actions from "../actions/actionTypes";
+
 const initialState = {
   error: null,
   loading: false,
@@ -5,21 +7,21 @@ const initialState = {
 
 const authReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case "AUTH_START":
-      return {
-        ...state,
-        loading: true,
-      };
-    case "AUTH_END":
-      return {
-        ...state,
-        loading: false,
-      };
-    case "AUTH_FAIL":
-      return {
-        ...state,
-        error: payload,
-      };
+    case actions.AUTH_START:
+      return { ...state, loading: true };
+
+    case actions.AUTH_END:
+      return { ...state, loading: false };
+
+    case actions.AUTH_FAIL:
+      return { ...state, error: payload };
+
+    case actions.AUTH_SUCCESS:
+      return { ...state, error: false };
+
+    case actions.CLEAN_UP:
+      return { ...state, error: null, loading: false };
+
     default:
       return state;
   }
