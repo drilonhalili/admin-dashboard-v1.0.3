@@ -60,6 +60,7 @@ export const signIn = (data) => async (dispatch, getState, { getFirebase }) => {
 // Clean up messages
 export const clean = () => ({
   type: actions.CLEAN_UP,
+  payload: "",
 });
 
 //59.20
